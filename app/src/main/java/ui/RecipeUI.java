@@ -110,35 +110,35 @@ public class RecipeUI {
      * @throws java.io.IOException 入出力が受け付けられない
      */
     private void searchRecipe() throws IOException {
-        System.out.println("Search Results:");
+
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             System.out.print("Enter search query (e.g., 'name=Tomato&ingredient=Garlic'): ");
             String query = br.readLine();
-            ArrayList<String> keyWords=new ArrayList<>();
-            
+            ArrayList<String> keyWords = new ArrayList<>();
+
             String[] pairs = query.split("&");
             for (String pair : pairs) {
                 String[] keyValue = pair.split("=");
-                if(keyValue.length==2){
+                if (keyValue.length == 2) {
                     keyWords.add(keyValue[1]);
                 }
             }
 
             ArrayList<String> recipes = fileHandler.readRecipes();
-            int count=0;
-            for (int i=0;i<recipes.size();i=i+2) {
-                    if(recipe.get(i).contains(keyWord.get(0))&&recipe.get(i+1).contains(keyWord.get(1))){
-                        System.out.println(recipe);
-                    }else{
-                        count++;
-                    }
-                
+            int count = 0;
+            System.out.println("Search Results:");
+            for (int i = 0; i < recipes.size(); i = i + 2) {
+                if (recipes.get(i).contains(keyWords.get(0)) && recipes.get(i + 1).contains(keyWords.get(1))) {
+                    System.out.println(recipes.get(i) + recipes.get(i + 1));
+                } else {
+                    count++;
+                }
             }
-            
-            if(count>0){
-                System.out.println("No recipes found matching the criteria.");
-                count=0;
+
+            if (count > 0) {
+            System.out.println("No recipes found matching the criteria.");
+            count = 0;
             }
 
         } catch (Exception e) {
