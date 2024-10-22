@@ -35,8 +35,8 @@ public class RecipeFileHandler {
             int a ;
             while((line = reader.readLine()) != null){
                 a = line.indexOf(',');
-                recipes.add(line.substring(0, a));
-                recipes.add(line.substring(a+1));
+                recipes.add("Recipe Name: "+line.substring(0, a));
+                recipes.add("Main Ingredients: "+line.substring(a+1));
             }
             return recipes;
         } catch (IOException e) {
